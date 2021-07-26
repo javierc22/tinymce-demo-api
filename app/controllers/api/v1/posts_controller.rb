@@ -29,6 +29,14 @@ module Api::V1
       end
     end
 
+    def destroy
+      if @post.destroy
+        render json: { msg: "Post deleted", success: true}, status: :ok
+      else
+        render json: { msg: "Error", success: false}, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def set_post
