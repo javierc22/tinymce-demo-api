@@ -1,6 +1,6 @@
 module Api::V1
   class PostsController < ApplicationController
-    before_action :set_post, only: [:show, :destroy, :update]
+    before_action :set_post, only: [:show, :destroy, :update, :edit]
 
     def index
       posts = Post.all
@@ -19,6 +19,10 @@ module Api::V1
 
     def show
       render json: @post, status: :ok
+    end
+
+    def edit
+      render json: @post, is_edit: true, status: :ok
     end
 
     def update
