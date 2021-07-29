@@ -28,8 +28,14 @@ gem 'active_model_serializers', '~> 0.10.12'
 gem 'rack-cors'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry', '~> 0.13.1'
+  gem 'rspec-rails', '~> 5.0.0'
+end
+
+group :test do
+  gem 'factory_bot_rails', '~> 6.2.0'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'database_cleaner-active_record', '~> 2.0.1'
 end
 
 group :development do
