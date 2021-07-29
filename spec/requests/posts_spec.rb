@@ -72,4 +72,42 @@ RSpec.describe "Posts", type: :request do
       end
     end
   end
+
+  describe "GET /api/v1/posts/:id/edit" do
+    context "when parameter :id does not exist" do
+      before :each do
+        get "/api/v1/posts/100/edit"
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should return error message" do
+        expect(@payload["msg"]).to eq("Not found")
+      end
+
+      it "should respond with status 404 (not_found)" do
+        expect(@response).to have_http_status(:not_found)
+      end
+    end
+
+    context "when parameter :id does exist" do
+      let(:post) { create(:post) }
+
+      before :each do
+        get "/api/v1/posts/#{post.id}/edit"
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should return post to edit" do
+        expect(@payload["id"]).to eq(post.id)
+        expect(@payload["title"]).to eq(post.title)
+        expect(@payload["extract"]).to eq(post.extract)
+        expect(@payload["content"]).to eq(post.content)
+        expect(@payload["breadcrumbs"]).to be_present
+      end
+
+      it "should respond with status 200 (ok)" do
+        expect(@response).to have_http_status(:ok)
+      end
+    end
+  end
 end
