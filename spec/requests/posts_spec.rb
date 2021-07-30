@@ -173,4 +173,50 @@ RSpec.describe "Posts", type: :request do
       end
     end
   end
+
+  describe "DELETE /api/v1/posts/:id" do
+    context "when is successfully deleted" do
+      let!(:posts) { create_list(:post, 5) }
+
+      before :each do
+        delete "/api/v1/posts/#{posts[0].id}"
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should delete request post" do
+        expect(Post.all).to_not include(posts[0])
+        expect(Post.count).to eq(posts.size - 1)  
+      end
+
+      it "should return successful message" do
+        expect(@payload["msg"]).to eq("Post deleted")
+        expect(@payload["success"]).to eq(true)
+      end
+        
+      it "should respond with status 200 (ok)" do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context "when :id does not exist" do
+      let!(:posts) { create_list(:post, 5) }
+
+      before :each do
+        delete "/api/v1/posts/100"
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should not delete requested post" do
+        expect(Post.count).to eq(posts.size)
+      end
+
+      it "should return error message" do
+        expect( @payload["msg"]).to eq("Not found")
+      end
+
+      it "should respond with status 404 (not_found)" do
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
