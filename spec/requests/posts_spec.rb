@@ -110,4 +110,67 @@ RSpec.describe "Posts", type: :request do
       end
     end
   end
+
+  describe "POST /api/v1/posts" do
+    context "when post is successfully created with valid params" do
+      let(:valid_params) do 
+        { 
+          post: { title: "Post test", extract: "Hi I am extract", content: "Hi I am description" }
+        }
+      end
+
+      before :each do
+        post "/api/v1/posts", params: valid_params
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should create new post" do
+        expect(@payload["post_id"]).to be_present
+        expect(Post.find(@payload["post_id"])).not_to be_nil
+        expect(Post.find(@payload["post_id"]).title).to eq(valid_params[:post][:title])
+      end
+
+      it "should return successful message" do
+        expect(@payload["msg"]).to eq("Post created")
+        expect(@payload["success"]).to be true
+      end
+        
+      it "should respond with status 201 (created)" do
+        expect(response).to have_http_status(:created)
+      end
+    end
+
+    context "when request have invalid params" do
+      let(:invalid_params) do 
+        { 
+          post: { title: "", extract: "Hi I am extract", content: "Hi I am description" }
+        }
+      end
+
+      before :each do
+        post "/api/v1/posts", params: invalid_params
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should return error message" do
+        expect( @payload["msg"]).to eq("Error")
+        expect(@payload["success"]).to be false
+      end
+    end
+
+    context "when not params present" do
+      before :each do
+        post "/api/v1/posts", params: {}
+        @payload = JSON.parse(response.body)
+      end
+  
+      it "should return message error" do
+        expect(@payload["msg"]).to eq("Error")
+      end
+  
+      it "should respond with status 400 (bad_request)" do
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+  end
 end
