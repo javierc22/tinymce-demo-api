@@ -219,4 +219,72 @@ RSpec.describe "Posts", type: :request do
       end
     end
   end
+
+  describe "PUT /api/v1/posts/:id" do
+    context "when is successfully updated" do
+      let(:post) { create(:post, title: "Post test 1") }
+
+      let(:valid_params) do 
+        { 
+          post: { title: "Post test 1 updated", extract: "extract updated", content: "description updated" }
+        }
+      end
+
+      before :each do
+        put "/api/v1/posts/#{post.id}", params: valid_params
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should updated request post" do
+        post_updated = Post.find(post.id)
+        expect(post_updated.title).to eq(valid_params[:post][:title])
+        expect(post_updated.extract).to eq(valid_params[:post][:extract])
+        expect(post_updated.content).to eq(valid_params[:post][:content])
+      end
+
+      it "should return successful message" do
+        expect(@payload["msg"]).to eq("Post updated")
+        expect(@payload["success"]).to eq(true)
+      end
+        
+      it "should respond with status 200 (ok)" do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context "when there is invalid params" do
+      let(:post) { create(:post, title: "Post test 1") }
+
+      let(:invalid_params) do 
+        { 
+          post: { title: nil, extract: nil, content: nil }
+        }
+      end
+
+      before :each do
+        put "/api/v1/posts/#{post.id}", params: invalid_params
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should return message error" do
+        expect(@payload["msg"]).to eq("Error")
+        expect(@payload["success"]).to eq(false)
+      end
+    end
+
+    context "when post not found" do
+      before :each do
+        put "/api/v1/posts/100"
+        @payload = JSON.parse(response.body)
+      end
+
+      it "should return error message" do
+        expect( @payload["msg"]).to eq("Not found")
+      end
+
+      it "should respond with status 404 (not_found)" do
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
