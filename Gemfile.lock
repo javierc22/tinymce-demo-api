@@ -65,6 +65,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -89,6 +91,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     jsonapi-renderer (0.2.2)
     listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -110,6 +114,7 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    public_suffix (4.0.6)
     puma (5.3.2)
       nio4r (~> 2.0)
     racc (1.5.2)
@@ -165,6 +170,15 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    rswag-api (2.4.0)
+      railties (>= 3.1, < 7.0)
+    rswag-specs (2.4.0)
+      activesupport (>= 3.1, < 7.0)
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.0)
+    rswag-ui (2.4.0)
+      actionpack (>= 3.1, < 7.0)
+      railties (>= 3.1, < 7.0)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
     spring (2.1.1)
@@ -198,6 +212,9 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.1.4)
   rspec-rails (~> 5.0.0)
+  rswag-api
+  rswag-specs
+  rswag-ui
   shoulda-matchers (~> 5.0)
   spring
   tzinfo-data
