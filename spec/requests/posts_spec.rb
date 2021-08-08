@@ -43,7 +43,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return error message" do
-        expect(@payload["msg"]).to eq("Not found")
+        expect(@payload["message"]).to eq("Not found")
       end
 
       it "should respond with status 404 (not_found)" do
@@ -81,7 +81,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return error message" do
-        expect(@payload["msg"]).to eq("Not found")
+        expect(@payload["message"]).to eq("Not found")
       end
 
       it "should respond with status 404 (not_found)" do
@@ -131,7 +131,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return successful message" do
-        expect(@payload["msg"]).to eq("Post created")
+        expect(@payload["message"]).to eq("Post created")
         expect(@payload["success"]).to be true
       end
         
@@ -153,7 +153,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return error message" do
-        expect( @payload["msg"]).to eq("Error")
+        expect( @payload["message"]).to eq("Error")
         expect(@payload["success"]).to be false
       end
     end
@@ -165,7 +165,7 @@ RSpec.describe "Posts", type: :request do
       end
   
       it "should return message error" do
-        expect(@payload["msg"]).to eq("Error")
+        expect(@payload["message"]).to eq("Error")
       end
   
       it "should respond with status 400 (bad_request)" do
@@ -189,7 +189,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return successful message" do
-        expect(@payload["msg"]).to eq("Post deleted")
+        expect(@payload["message"]).to eq("Post deleted")
         expect(@payload["success"]).to eq(true)
       end
         
@@ -211,7 +211,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return error message" do
-        expect( @payload["msg"]).to eq("Not found")
+        expect( @payload["message"]).to eq("Not found")
       end
 
       it "should respond with status 404 (not_found)" do
@@ -243,7 +243,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return successful message" do
-        expect(@payload["msg"]).to eq("Post updated")
+        expect(@payload["message"]).to eq("Post updated")
         expect(@payload["success"]).to eq(true)
       end
         
@@ -267,7 +267,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return message error" do
-        expect(@payload["msg"]).to eq("Error")
+        expect(@payload["message"]).to eq("Error")
         expect(@payload["success"]).to eq(false)
       end
     end
@@ -279,7 +279,7 @@ RSpec.describe "Posts", type: :request do
       end
 
       it "should return error message" do
-        expect( @payload["msg"]).to eq("Not found")
+        expect( @payload["message"]).to eq("Not found")
       end
 
       it "should respond with status 404 (not_found)" do

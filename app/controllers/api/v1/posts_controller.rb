@@ -11,9 +11,9 @@ module Api::V1
       post = Post.new(post_params)
 
       if post.save
-        render json: { msg: "Post created", post_id: post.id, success: true}, status: :created
+        render json: { message: "Post created", post_id: post.id, success: true}, status: :created
       else
-        render json: { msg: "Error", success: false }, status: :unprocessable_entity
+        render json: { message: "Error", success: false }, status: :unprocessable_entity
       end
     end
 
@@ -27,17 +27,17 @@ module Api::V1
 
     def update
       if @post.update(post_params)
-        render json: { msg: "Post updated", success: true}, status: :ok
+        render json: { message: "Post updated", success: true}, status: :ok
       else
-        render json: { msg: "Error", success: false}, status: :unprocessable_entity
+        render json: { message: "Error", success: false}, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @post.destroy
-        render json: { msg: "Post deleted", success: true}, status: :ok
+        render json: { message: "Post deleted", success: true}, status: :ok
       else
-        render json: { msg: "Error", success: false}, status: :unprocessable_entity
+        render json: { message: "Error", success: false}, status: :unprocessable_entity
       end
     end
 
