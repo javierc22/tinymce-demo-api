@@ -34,7 +34,7 @@ gem 'rswag-ui'
 group :development, :test do
   gem 'pry', '~> 0.13.1'
   gem 'rspec-rails', '~> 5.0.0'
-  gem 'rswag-specs'
+  gem 'rswag-specs'# https://github.com/drewish/rspec-rails-swagger
 end
 
 group :test do

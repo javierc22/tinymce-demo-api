@@ -44,7 +44,6 @@ describe 'Tinymce demo API' do
       response '201', 'Post created' do
         let!(:post_item) { { title: 'Post 1', content: 'content post' } }
         run_test!
-
         examples 'application/json' => {
           message: "Post created", post_id: 1, success: true
         }

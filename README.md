@@ -1,24 +1,22 @@
-# README
+# Tinymce Demo API
+## Proyecto
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<img src="./readme/01.png" height="250" />
 
-Things you may want to cover:
+<img src="./readme/02.png" height="250" />
 
-* Ruby version
+<img src="./readme/03.png" height="250" />
 
-* System dependencies
+<img src="./readme/04.png" height="250" />
 
-* Configuration
+## Documentación con Swagger
 
-* Database creation
+~~~
+http://localhost:3000/api-docs
+~~~
 
-* Database initialization
+## Pruebas
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+~~~
+rspec
+~~~
