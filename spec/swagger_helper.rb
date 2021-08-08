@@ -24,14 +24,44 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'localhost:3000'
             }
           }
         }
-      ]
+      ],
+      components: {
+        schemas: {
+          post: {
+            type: 'object',
+            properties: {
+              id: { type: 'integer', example: "1"},
+              title: { type: 'string', example: "Post title 1"},
+              extract: { type: 'string', example: "Lorem ipsum dolor sit amet 2", nullable: true},
+              content: { type: 'string', example: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus dui nec</p>", nullable: true},
+              created_at: { type: 'string', example: "July 28, 2021 19:23" }
+            },
+            required: %w[id title]
+          },
+          new_post: {
+            type: 'object',
+            properties: {
+              title: { type: 'string', example: "Post title 1"},
+              extract: { type: 'string', example: "Lorem ipsum dolor sit amet 2", nullable: true},
+              content: { type: 'string', example: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus dui nec</p>", nullable: true},
+            },
+            required: %w[title]
+          },
+          not_found: {
+            type: 'object',
+            properties: {
+              message: { type: 'string', example: "Not found"}
+            }
+          },
+        }
+      }
     }
   }
 
