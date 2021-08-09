@@ -62,11 +62,9 @@ RSpec.configure do |config|
               extract: { type: 'string', example: "Lorem ipsum dolor sit amet 2", nullable: true},
               content: { type: 'string', example: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus dui nec</p>", nullable: true},
               breadcrumbs: { type: 'array', example: [
-                [
                   { to: "/", text: "Inicio", is_active: false },
                   { to: "/2", text: "Lorem ipsum dolor sit amet 2", is_active: false },
                   { to: "", text: "Editar", is_active: true }
-                ]
               ]}
             },
             required: %w[title]

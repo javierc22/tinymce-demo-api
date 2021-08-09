@@ -226,15 +226,15 @@ components:
         breadcrumbs:
           type: array
           example:
-          - - to: "/"
-              text: Inicio
-              is_active: false
-            - to: "/2"
-              text: Lorem ipsum dolor sit amet 2
-              is_active: false
-            - to: ''
-              text: Editar
-              is_active: true
+          - to: "/"
+            text: Inicio
+            is_active: false
+          - to: "/2"
+            text: Lorem ipsum dolor sit amet 2
+            is_active: false
+          - to: ''
+            text: Editar
+            is_active: true
       required:
       - title
     not_found:
