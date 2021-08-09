@@ -77,6 +77,86 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found"
+    put:
+      summary: update a post
+      tags:
+      - Posts
+      description: Update a single post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: post updated
+          content:
+            application/json:
+              example:
+                message: Post updated
+                success: true
+        '404':
+          description: Not found
+          content:
+            application/json:
+              example:
+                message: Not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/new_post"
+    delete:
+      summary: Delete a post
+      tags:
+      - Posts
+      description: Delete a single post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: post deleted
+          content:
+            application/json:
+              example:
+                message: Post deleted
+                success: true
+        '404':
+          description: Not found
+          content:
+            application/json:
+              example:
+                message: Not found
+  "/api/v1/posts/{id}/edit":
+    get:
+      summary: Return a post
+      tags:
+      - Posts
+      description: Return a single post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: post found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/edit_post"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
 servers:
 - url: http://{defaultHost}
   variables:
@@ -123,6 +203,38 @@ components:
           example: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             faucibus dui nec</p>"
           nullable: true
+      required:
+      - title
+    edit_post:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: '2'
+        title:
+          type: string
+          example: Post title 1
+        extract:
+          type: string
+          example: Lorem ipsum dolor sit amet 2
+          nullable: true
+        content:
+          type: string
+          example: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            faucibus dui nec</p>"
+          nullable: true
+        breadcrumbs:
+          type: array
+          example:
+          - - to: "/"
+              text: Inicio
+              is_active: false
+            - to: "/2"
+              text: Lorem ipsum dolor sit amet 2
+              is_active: false
+            - to: ''
+              text: Editar
+              is_active: true
       required:
       - title
     not_found:
