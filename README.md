@@ -11,6 +11,9 @@
 
 ## API docs Swagger
 
+https://app.swaggerhub.com/apis-docs/javierc22/tinymce-demo-api/1.0
+
+local:
 ~~~
 http://localhost:3000/api-docs
 ~~~
