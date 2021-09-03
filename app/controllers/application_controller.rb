@@ -9,4 +9,8 @@ class ApplicationController < ActionController::API
   def parameter_missing
     render json: { message: "Error" }, status: :bad_request
   end
+
+  def index
+    render json: "Tiny mce demo app"
+  end
 end
